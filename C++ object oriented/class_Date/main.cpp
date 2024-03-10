@@ -1,6 +1,6 @@
 #include <iostream>
 using namespace std;
-#include "Date.h"
+#include "date.h"
 
 
 int main()
@@ -15,8 +15,7 @@ int main()
 	cout << "d1=" << d1 << endl;
 	cout << "d2=" << d2 << endl;
 
-	/*
-	d3.SetFormat() = true;	
+	d3.SetFormat() = false;	
 	cout << "d3=" << d3 << endl;
 
 	d4.SetFormat() = true;	
@@ -25,26 +24,27 @@ int main()
 	cout << "Enter date: (2001<=year<=2100)"<<endl;
 	cin >> d1;
 	cout << "d1= " << d1 << endl;
-	*/
+
 	cout << "----------   Part 2    -------------------------" << endl<<endl;
-	/*
+
 	d4 = d1;
 	for (int i = 0; i < 6; i++)
 	{
 		d4.NextDay();
 		cout << "d4=" << d4 << endl;
 	}
-	*/
+
 	cout << "----------   Part 3    -------------------------" << endl<<endl;
-	/*
+	
+	d4 = d1;
 	for (int i = 0; i < 6; i++)
 	{
 		d4.PrevDay();
 		cout << "d4=" << d4 << endl;
 	}
-	*/
+	
 	cout << "----------   Part 4    -------------------------" << endl<<endl;
-	/*
+
 	Date d5 = d4, d6;
 	d5.SelectedDay();
 	cout << "in a week it will be d5=" << d5 << endl;
@@ -55,9 +55,8 @@ int main()
 	d6 = d5;
 	d5.SelectedDay(-21);
 	cout << "and 3 weeks ago it was d5=" << d5 << endl;
-	*/
+
 	cout << "----------   Part 5    -------------------------" << endl<<endl;
-	/*
 	if (d5.ifEqual(d6))
 		cout << "Dates: " << d5 << " and " << d6 << " are eqal " << endl;
 	else
@@ -65,9 +64,8 @@ int main()
 
 	if (ifLess(d5,d6))
 		cout << "Date: " << d5 << " is earlier than " << d6 << endl;
-	*/
 	cout << "----------   Part 6    -------------------------" << endl<<endl;
-	/*
+
 	d5.SetFormat() = true;
 	d6.SetFormat() = true;
 	cout << "Days from: " << d5<< " to "<< d6<< " : "<< NuberOfDays(d5, d6) << endl;
@@ -76,5 +74,5 @@ int main()
 	d6.SetFormat() = false;
 	cout << "Days from: " << d6 << " to " << d5 << " : " << NuberOfDays(d6, d5) << endl;
 	cout << "Days from: " << d5 << " to " << d5 << " : " << NuberOfDays(d5, d5) << endl;
-	*/
+
 }
