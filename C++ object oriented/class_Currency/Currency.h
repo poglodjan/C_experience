@@ -16,14 +16,6 @@ public:
 	int get_shillings() const { return shillings; }
 	int get_pences() const { return pences; }
 
-	//void set_pounds(int _pounds) { pounds = _pounds; }
-	//void set_shillings(int _shillings) { shillings = _shillings; }
-	//void set_pences(int _pences) { pences = _pences; }
-
-	//int& set_pounds() { return pounds; }
-	//int& set_shillings() { return shillings; }
-	//int& set_pences() { return pences; }
-
 	void fix();
 	void read();
 	void print() const;
