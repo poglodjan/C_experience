@@ -2,35 +2,31 @@
 using namespace std;
 #include "color.h"
 
-Color::Color(){
-	this->channelX = 0;
-	this->channelY = 0;
-	this->channelZ = 0;
-	this->isRGB = true;
-}
+Color::Color() : channelX(0), channelY(0), channelZ(0), isRGB(true) {}
 
-Color::Color(int channelX, int channelY, int channelZ) : channelX(channelX), channelY(channelY), channelZ(channelZ){
+Color::Color(int channelX, int channelY, int channelZ) : channelX(channelX), channelY(channelY), channelZ(channelZ) {
 	this->channelX = clampedValue(channelX / 255, 0, 1);
 	this->channelY = clampedValue(channelY / 255, 0, 1);
 	this->channelZ = clampedValue(channelZ / 255, 0, 1);
 	this->isRGB = true;
 }
-Color::Color(float channelX, float channelY, float channelZ, bool isRGB) : channelX(channelX), channelY(channelY), channelZ(channelZ), isRGB(isRGB){
+Color::Color(float channelX, float channelY, float channelZ, bool isRGB) : channelX(channelX), channelY(channelY), channelZ(channelZ), isRGB(isRGB) {
 	this->channelX = clampedValue(channelX, 0, 360);
 	this->channelY = clampedValue(channelY, 0, 1);
 	this->channelZ = clampedValue(channelZ, 0, 1);
-	this->isRGB = true;
+	this->isRGB = false;
 }
 
 
-Color::Color(float channelX, float channelY, float channelZ) : channelX(channelX), channelY(channelY), channelZ(channelZ){
-	channelX = clampedValue(channelX,0,1);
-	channelY = clampedValue(channelY,0,1);
-	channelZ = clampedValue(channelZ,0,1);
+Color::Color(float channelX, float channelY, float channelZ) : channelX(channelX), channelY(channelY), channelZ(channelZ) {
+	channelX = clampedValue(channelX, 0, 1);
+	channelY = clampedValue(channelY, 0, 1);
+	channelZ = clampedValue(channelZ, 0, 1);
 	this->isRGB = true;
 }
 
-bool& Color::SetFormat() {
+bool& Color::SetFormat(bool displayFormat) {
+	format = displayFormat;
 	return format;
 }
 
@@ -40,95 +36,73 @@ float Color::clampedValue(float value, float minValue, float maxValue)
 }
 
 Color::Color(const char* hex_color) {
-	int chX=0, chY=0, chZ=0;
-	char c;
-	int channelValue=0;
-	for (int i = 0; i < 6; i++)
-	{
-		switch (i) {
-		case 0:
-			c = hex_color[i];
-			if (tryPraseColorChannel(c, channelValue)) {
-				chX += 16 * channelValue;
-			}
-			continue;
-		case 1:
-			c = hex_color[i];
-			if (tryPraseColorChannel(c, channelValue)) {
-				chX += channelValue;
-			}
-			continue;
-		case 2:
-			c = hex_color[i];
-			if (tryPraseColorChannel(c, channelValue)) {
-				chY += 16 * channelValue;
-			}
-			continue;
-		case 3:
-			c = hex_color[i];
-			if (tryPraseColorChannel(c, channelValue)) {
-				chY += channelValue;
-			}
-			continue;
-		case 4:
-			c = hex_color[i];
-			if (tryPraseColorChannel(c, channelValue)) {
-				chZ += 16 * channelValue;
-			}
-			continue;
-		case 5:
-			c = hex_color[i];
-			if (tryPraseColorChannel(c, channelValue)) {
-				chZ += channelValue;
-			}
-			continue;
-		}
+	float chX = 0, chY = 0, chZ = 0;
+	bool isValid=true;
+	int r1, r2, g1, g2, b1, b2;
+	tryPraseColorChannel(hex_color[0], r1);
+	tryPraseColorChannel(hex_color[1], r2);
+	tryPraseColorChannel(hex_color[2], g1);
+	tryPraseColorChannel(hex_color[3], g2);
+	tryPraseColorChannel(hex_color[4], b1);
+	tryPraseColorChannel(hex_color[5], b2);
+
+	if (!tryPraseColorChannel(hex_color[0], r1) || 
+		!tryPraseColorChannel(hex_color[1], r2) || 
+		!tryPraseColorChannel(hex_color[2], g1) || 
+		!tryPraseColorChannel(hex_color[3], g2) || 
+		!tryPraseColorChannel(hex_color[4], b1) || 
+		!tryPraseColorChannel(hex_color[5], b2)){
+		isValid=false;
+		cout << "Invalid color!";
 	}
+
+	chX = 16*r1 + r2;
+	chY = 16*g1 + g2;
+	chZ = 16*b1 + b2;
+	
 	this->channelX = clampedValue(chX / 255, 0, 1);
 	this->channelY = clampedValue(chY / 255, 0, 1);
 	this->channelZ = clampedValue(chZ / 255, 0, 1);
+	if(isValid==true) this->isRGB = true;
 }
 
 bool Color::tryPraseColorChannel(char c, int& channelValue) {
-	if (c == '0' or c == '1' or c == '2' or c == '3' or c == '4' or
-		c == '5' or c == '6' or c == '7' or c == '8' or c == '9') {
-		channelValue = int(c);
+	if ('0' <= c && c <= '9') {
+		channelValue = c - '0';
 		return true;
 	}
-	else if (c == 'A' or c == 'B' or c == 'C' or c == 'D' or c == 'E' or c == 'F') {
-		switch (c) {
-		case 'A':channelValue = 10;
-		case 'B':channelValue = 11;
-		case 'C':channelValue = 12;
-		case 'D':channelValue = 13;
-		case 'E':channelValue = 14;
-		case 'F':channelValue = 15;
-		default: channelValue = 1;
-		}
+	else if ('A' <= c && c <= 'F') {
+		channelValue = c - 'A' + 10;
+		return true;
+	}
+	else if ('a' <= c && c <= 'f') {
+		channelValue = c - 'a' + 10;
 		return true;
 	}
 	else return false;
 }
 
 ostream& operator<<(ostream& out, const Color& c) {
-	if (c.format == true) {
-		if (c.isRGB == true) {
+	if (c.isRGB == true) {
+		if (c.format == false) {
 			out << "Color RGB : (" << c.channelX << "," << c.channelY << "," << c.channelZ << ")" << endl;
 			return out;
 		}
-		if (c.isRGB == false) {
+		if (c.format == true) {
+			out << "Color RGB : (" << c.channelX * 255 << "," << c.channelY * 255 << "," << c.channelZ * 255 << ")" << endl;
+			return out;
+		}
+	}
+
+	if (c.isRGB == false) {
+		if (c.format == false) {
 			out << "Color HSV : (" << c.channelX << "," << c.channelY << "," << c.channelZ << ")" << endl;
 			return out;
 		}
-	}
-	if (c.format == true) {
-		if (c.isRGB == true) {
-			out << "Color RGB : (" << c.channelX*255 << "," << c.channelY*255 << "," << c.channelZ*255 << ")" << endl;
-			return out;
-		}
-		if (c.isRGB == false) {
-			out << "Color HSV : (" << c.channelX << "," << c.channelY*100 << "%," << c.channelZ*100 << "%)" << endl;
+		if (c.format == true) {
+			out << "Color HSV : (" << c.channelX << "," << c.channelY * 100 << "%," << c.channelZ * 100 << "%)" << endl;
 			return out;
 		}
 	}
+	return out; 
 }
