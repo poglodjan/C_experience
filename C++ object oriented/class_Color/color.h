@@ -8,7 +8,7 @@ private:
 	float channelY;
 	float channelZ;
 	bool isRGB;
-	bool format;
+	bool format=false;
 
 public:
 	Color();
@@ -18,7 +18,7 @@ public:
 	Color(const char* hex_color);
 	bool tryPraseColorChannel(char c, int& channelValue);
 
-	bool& SetFormat();
+	bool& SetFormat(bool displayFormat = true);
 	float clampedValue(float value, float minValue, float maxValue);
-	friend ostream& operator<<(ostream& out, const Color&);
+	friend ostream& operator<<(ostream& out, const Color& c);
 };
