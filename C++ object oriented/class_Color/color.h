@@ -21,4 +21,7 @@ public:
 	bool& SetFormat(bool displayFormat = true);
 	float clampedValue(float value, float minValue, float maxValue);
 	friend ostream& operator<<(ostream& out, const Color& c);
+	Color toRGB();
+	Color toHSV();
+	Color addColor(Color& c);
 };
