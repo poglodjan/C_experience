@@ -82,6 +82,87 @@ bool Color::tryPraseColorChannel(char c, int& channelValue) {
 	else return false;
 }
 
+Color Color::toRGB() {
+	if (isRGB == false) {
+		float c = channelY * channelZ;
+		float x = c * (1.0f - abs((int)(channelX / 60) % 2 - 1));
+		float m = channelZ - c;
+		float r, g, b;
+		if (channelY < 60) {
+			r = c;
+			g = x;
+			b = 0;
+		}
+		else if (channelY < 120) {
+			r = x;
+			g = c;
+			b = 0;
+		}
+		else if (channelY < 180) {
+			r = 0;
+			g = c;
+			b = x;
+		}
+		else if (channelY < 240) {
+			r = 0;
+			g = x;
+			b = c;
+		}
+		else if (channelY < 300) {
+			r = x;
+			g = 0;
+			b = c;
+		}
+		else {
+			r = c;
+			g = 0;
+			b = x;
+		}
+		return Color(r + m, g + m, b + m);
+	}
+	else return Color(channelX, channelY, channelZ);
+}
+
+Color Color::toHSV() {
+	if (isRGB == true) {
+		float cmax = max(max(channelX, channelY), channelZ);
+		float cmin = min(min(channelX, channelY), channelZ);
+		float delta = cmax - cmin;
+		float hue = 0;
+		if (delta != 0) {
+			if (cmax == channelX)
+				hue = 60 * (int((channelY - channelZ) / delta) % 6);
+			else if (cmax == channelY)
+				hue = 60 * (((channelZ - channelX) / delta) + 2);
+			else if (cmax == channelZ)
+				hue = 60 * (((channelX - channelY) / delta) + 4);
+			if (hue < 0)
+				hue += 360;
+		}
+		float saturation = cmax == 0 ? 0 : delta / cmax;
+		float value = cmax;
+		return Color(hue, saturation, value);
+	}
+	else return Color(channelX, channelY, channelZ);
+}
+
+Color Color::addColor(Color& c) {
+	if (this->isRGB) {
+		Color colorOther = c.toRGB();
+		this->channelX += colorOther.channelX;
+		this->channelY += colorOther.channelY;
+		this->channelZ += colorOther.channelZ;
+		return *this;
+	}
+	else {
+		Color colorOther = c.toHSV();
+		this->channelX += colorOther.channelX;
+		this->channelY += colorOther.channelY;
+		this->channelZ += colorOther.channelZ;
+		return *this;
+	}
+}
+
 ostream& operator<<(ostream& out, const Color& c) {
 	if (c.isRGB == true) {
 		if (c.format == false) {
