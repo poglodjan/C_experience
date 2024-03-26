@@ -1,3 +1,7 @@
+static constexpr int MAX_DECIMAL_VALUE = 143;
+static constexpr int SIZE = 10;
+static constexpr int MAX_N = 11;
+
 class Fibonacci
 {
 	bool numberF[SIZE];
