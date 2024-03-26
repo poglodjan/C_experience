@@ -10,6 +10,11 @@ Depot::Depot(const char* name) : num(0)
 }
 
 void Depot::operator+=(Tram&){
+  if (num < MAX_TRAMS) { 
+        atbase[num++] = &tram; 
+    } else {
+        std::cout << "Depot is full, cannot add more trams." << std::endl;
+    }
 }
 
 void Depot::send_first(){
