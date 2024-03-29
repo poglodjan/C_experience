@@ -12,19 +12,17 @@ class Library
 public:
 	// ===== STAGE  3 ===== 
 	Library();
-	// operator+=
 	friend ostream& operator<<(ostream& out, const Library& l);
-	
-	void operator+=(Book&);
+	bool operator+=(Book&);
 
 	// ===== STAGE  4 ===== 
-	// rent
+	Book* Rent(const char*);
 
 	// ===== STAGE  5 ===== 
-	// list by author
+	void ListByAuthor(const char*);
 
 	// ===== STAGE  6 ===== 
-	// find by phrase
+	void FindByPhrase(const char*);
 
 	
 };
