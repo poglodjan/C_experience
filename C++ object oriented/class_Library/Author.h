@@ -15,7 +15,7 @@ public:
 	// ===== STAGE  1 ===== 
 
 	Author(const char* n);
-	char get_name();
+	const char* get_name();
 
 	friend ostream& operator<<(ostream& out, const Author& a);
 	friend bool operator==(const Author&, const Author&);
