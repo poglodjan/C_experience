@@ -1,5 +1,7 @@
 class color to convert color among RGB, HSV and HEX
 
+Output:
+
 ----------   Part 1    -------------------------
 CONSTRUCTING RGB COLORS
 
