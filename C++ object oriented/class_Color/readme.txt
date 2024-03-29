@@ -81,4 +81,4 @@ Adding magenta + green
 Output should be RGB (1, 1, 1) and HSV (0, 0, 1):
 Color RGB : (1,1,1)
 
-Color HSV : (420,2,2)
+Color HSV : (0,0,1)
