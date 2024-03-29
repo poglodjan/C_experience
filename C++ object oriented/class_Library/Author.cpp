@@ -1,15 +1,14 @@
 #include "Author.h"
 using namespace std;
 
-using namespace std;
 // ===== STAGE  1 ===== 
 
 Author::Author(const char* name_){
 	strncpy_s(this->name, name_, MAX_NAME_LEN);
 }
 
-char Author::get_name() {
-	return *name;
+const char* Author::get_name() {
+	return name;
 }
 
 ostream& operator<<(ostream& out, const Author& a) {
