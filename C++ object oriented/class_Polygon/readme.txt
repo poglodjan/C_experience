@@ -1,4 +1,4 @@
-class Polygon is the implementation of dynamic array used to make sides
+class Polygon is the implementation of dynamic array used to make sides with init constructor
 
 output:
 Polygon sides: 3 and their size: 1 1 1
