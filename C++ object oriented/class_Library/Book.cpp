@@ -60,11 +60,26 @@ ostream& operator<<(ostream& out, const Book& b) {
 	return out;
 }
 
-
-// ===== STAGE  2 ===== 
-
 // ===== STAGE  4 ===== 
+
+bool Book::MatchTitle(const char* title) const {
+	return strcmp(this->title, title)==0;
+}
 
 // ===== STAGE  5 ===== 
 
-// ===== STAGE  6 ===== 
+bool Book::MatchAuthor(const char* author) const {
+	for (int i = 0; i < authors_num; i++) {
+		Author this_author = authors[i];
+		if (strcmp(this_author.get_name(), author) == 0) {
+			return true;
+		}
+	}
+	return false;
+}
+
+// ===== STAGE  6 =====
+
+bool Book::MatchPhrase(const char* Phrase) const{
+	return strstr(title, Phrase) != nullptr;
+}
