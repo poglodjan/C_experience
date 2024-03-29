@@ -65,7 +65,7 @@ int main()
 	// ==================   STAGE  4  ===========================
 
 	std::cout << endl << "-------------  STAGE  4  --------------" << endl;
-	/*
+
 	Book* br1 = lib.Rent("Mistborn");
 	if (br1 != nullptr) cout << *br1 << endl;
 
@@ -73,11 +73,11 @@ int main()
 	if (br2 != nullptr) cout << *br2 << endl;
 
 	cout << lib << endl;
-	*/
+
 	// ==================   STAGE  5  ===========================
 	
 	std::cout << endl << "-------------  STAGE  5  --------------" << endl;
-	/*
+
 	Author aa5[] = { a1, a3 };
 	Book b5("Lab 6 Mix", aa5, 2, 1999); lib += b5;
 
@@ -89,16 +89,15 @@ int main()
 	Book b9("Misery", aa3, 1, 1987); lib += b9;
 	Book b10("The Way of Kings", aa4, 1, 2010); lib += b10;
 
-
 	lib.ListByAuthor("Stephen King");
 	cout << endl;
 	lib.ListByAuthor("Brandon Sanderson");
 	cout << endl;
 	lib.ListByAuthor("Non-existing Author");
 	cout << endl;
-	*/
+
 	// ==================   STAGE  6  ===========================
-	/*
+
 	std::cout << endl << "-------------  STAGE  6  --------------" << endl;
 
 	lib.FindByPhrase("Dziady");
@@ -107,6 +106,6 @@ int main()
 	cout << endl;
 	lib.FindByPhrase("this for sure will not be in a title");
 	cout << endl;
-	*/
+
 	return 0;
 }
