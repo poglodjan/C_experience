@@ -28,5 +28,4 @@ public:
 	bool MatchAuthor(const char* author) const;
 	bool MatchPhrase(const char* phrase) const;
 
-	
 };
