@@ -51,7 +51,7 @@ element card::operator()(int i, int j) const
 
 element& card::operator()(int i, int j)
 {
-    return t[i* + j];
+    return t[i*m + j];
 }
 
 card& card::operator+=(const pattern& g)
