@@ -11,14 +11,12 @@ class GameMachine
 	int no_of_games;
 	Game** games;
 public:
-	// Etap 6
 	GameMachine(int _serial_number);
 	GameMachine(const GameMachine&) = delete;
 	GameMachine& operator=(const GameMachine&) = delete;
 	~GameMachine();
 	friend ostream& operator<<(ostream &, const GameMachine&);
 	
-	// Etap 7
 	void add_game(string game_name, int no_of_balls, int no_to_draw);
 	void run();
 
