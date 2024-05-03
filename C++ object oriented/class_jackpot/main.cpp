@@ -51,24 +51,27 @@ int main()
 
 	//// ==================   PART 4 (0.5 pkt) ===========================
 
+	cout << endl << "__part 4__" << endl;
+	Game g1("Lotto", 49, 6);
+	cout << g1 << endl;
 
 	//// ==================   PART 5 (1 pkt) ===========================
-/*
+
 	cout << endl << "-------------  PART 5 (1 pkt) --------------" << endl;
 	Balls game_results;
 	game_results.set_format() = Balls::format::only_numbers;
 	game_results = g1.draw();
 	cout << g1 << endl;
 	cout << "Results: " << game_results << endl;
-*/
+
 	//// ==================   PART 6 (1 pkt) ===========================
-/*
+
 	cout << endl << "-------------  PART 6 (1 pkt) --------------" << endl;
 	GameMachine gm1(1234);
 	cout << gm1 << endl;
-*/
+
 	//// ==================   PART 7 (1,5 pkt) ===========================
-/*
+
 	cout << endl << "-------------  PART 7 (1,5 pkt) --------------" << endl;
 	gm1.add_game("Lotto", 49, 6);
 	gm1.add_game("Mini Lotto", 42, 5);
@@ -80,5 +83,6 @@ int main()
 	gm1.run();
 
 	cout << gm1 << endl;
-*/
+
 }
+
